@@ -69,15 +69,15 @@ admin.site.register(ArticleModel, ArticleModelAdmin)
 
 完成之后，可能还需要配置一下数据库信息，然后同步数据库，常见超级管理员等。完成之后，我们可以打开`/admin`：
 
-![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105100097_20210816091142893266.png ''图片title'')
+![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105100097_20210816091142893266.png)
 
 登陆之后可以看到：
 
-![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105153160_20210816091233283290.png ''图片title'')
+![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105153160_20210816091233283290.png)
 
 此时，我们可以新建一个文章：
 
-![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105208694_20210816091328804808.png ''图片title'')
+![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105208694_20210816091328804808.png)
 
 可以看到整个效果还是非常棒的。
 
@@ -87,7 +87,7 @@ admin.site.register(ArticleModel, ArticleModelAdmin)
 
 此时对html文件进行修改：
 
-![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105501904_20210816091822415063.png ''图片title'')
+![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105501904_20210816091822415063.png)
 
 在第91行添加：`initPasteDragImg(this); //必须`
 
@@ -166,7 +166,7 @@ function uploadImg(file,Editor){
 完成之后，还有一个问题：我们粘贴之后是会上传到当前项目下，但是在Serverless架构下，进行图片持久化是不能放在当前项目的，毕竟实例会被释放掉，所以这里还需要对存储位置进行改变：
 
 
-![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105706467_20210816092147104634.png ''图片title'')
+![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105706467_20210816092147104634.png)
 
 ```python
 import oss2
@@ -178,7 +178,7 @@ bucket = oss2.Bucket(auth, endpoint, bucketName)
 
 完成之后，还需要对文件存储部分进行额外处理：
 
-![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105778870_20210816092259339538.png ''图片title'')
+![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105778870_20210816092259339538.png)
 
 1. 注释掉红色的：不需要检查本地路径和写入到本地
 2. 增加蓝色的部分：将图片上传到对象存储`bucket.put_object(file_full_name, upload_image.chunks())`
@@ -186,7 +186,7 @@ bucket = oss2.Bucket(auth, endpoint, bucketName)
 
 完成之后，我们再重新运行一下项目，我们可以看到，是可以直接实现图片粘贴的，粘贴后的效果：
 
-![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105920067_20210816092520381872.png ''图片title'')
+![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629105920067_20210816092520381872.png)
 
 ## 部署到线上
 
@@ -253,7 +253,7 @@ services:
 
 我将该项目放在了Github：https://github.com/anycodes-cn/serverless-article-center
 
-![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629106074688_20210816092755070981.png ''图片title'')
+![图片alt](https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1629106074688_20210816092755070981.png)
 
 大家只需要Clone这个项目，然后编辑`s.yaml`，添加数据库信息，对象存储信息。
 
